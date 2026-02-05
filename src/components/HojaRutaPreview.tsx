@@ -362,7 +362,7 @@ const HojaRutaPreview: React.FC<HojaRutaPreviewProps> = ({ data, respuestasUnida
                 <div 
                   key={`page-${pageIndex + 2}`} 
                   className="bg-white p-6"
-                  style={{ marginTop: '450px' }}
+                  style={{ marginTop: '200px', paddingTop: '30px', borderTop: '3px dashed #999' }}
                 >
                   {/* Encabezado de página continuación */}
                   <div className="text-center mb-4">
