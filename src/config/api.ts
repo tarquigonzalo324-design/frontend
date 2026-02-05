@@ -45,7 +45,12 @@ export const API_ENDPOINTS = {
   HISTORIAL_EVENTOS: `${API_URL}/api/historial/eventos`,
   ENVIAR_A_UNIDAD: `${API_URL}/api/enviar/a-unidad`,
   HOJAS_RUTA_ESTADO: (id: number) => `${API_URL}/api/hojas-ruta/${id}/estado`,
-  HOJAS_RUTA_UBICACION: (id: number) => `${API_URL}/api/hojas-ruta/${id}/ubicacion`
+  HOJAS_RUTA_UBICACION: (id: number) => `${API_URL}/api/hojas-ruta/${id}/ubicacion`,
+  
+  // Backup y Restore
+  BACKUP_CREAR: `${API_URL}/api/backup/crear`,
+  BACKUP_RESTAURAR: `${API_URL}/api/backup/restaurar`,
+  BACKUP_INFO: `${API_URL}/api/backup/info`
 };
 
 export const apiConfig = {

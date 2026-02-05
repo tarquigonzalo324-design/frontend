@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { API_ENDPOINTS } from '../config/api';
+import BackupRestorePanel from './BackupRestorePanel';
 
 // SVG icons
 import PrioridadIcon from '../assets/prioridad';
@@ -371,6 +372,11 @@ const ModernDashboard: React.FC<Props> = ({ onNavigate }) => {
               <div className="px-5 py-10 text-center text-[#9ea0a9] text-sm">Sin historial reciente</div>
             )}
           </div>
+        </div>
+
+        {/* Panel de Backup - Solo Admin */}
+        <div className="mt-6">
+          <BackupRestorePanel />
         </div>
 
         {/* Footer */}
