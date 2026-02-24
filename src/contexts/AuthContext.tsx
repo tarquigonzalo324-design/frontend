@@ -52,22 +52,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   // Verificar token al cargar la app (sessionStorage)
   useEffect(() => {
-    console.log('🔐 AuthContext: Verificando sessionStorage...');
+    console.log('[Auth] Verificando sessionStorage...');
     const storedToken = sessionStorage.getItem('sedeges_token');
     const storedUser = sessionStorage.getItem('sedeges_user');
 
-    console.log('🔐 Token en sessionStorage:', storedToken ? 'existe' : 'no existe');
-    console.log('🔐 User en sessionStorage:', storedUser ? 'existe' : 'no existe');
+    console.log('[Auth] Token en sessionStorage:', storedToken ? 'existe' : 'no existe');
+    console.log('[Auth] User en sessionStorage:', storedUser ? 'existe' : 'no existe');
 
     if (storedToken) {
       setToken(storedToken);
-      console.log('🔐 Token seteado en estado');
+      console.log('[Auth] Token seteado en estado');
     }
     if (storedUser) {
       try {
         const parsed = JSON.parse(storedUser);
         setUser(parsed);
-        console.log('🔐 User seteado en estado:', parsed);
+        console.log('[Auth] User seteado en estado:', parsed);
       } catch (err) {
         console.warn('No se pudo parsear el usuario en sessionStorage');
       }
@@ -86,7 +86,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       const { token: newToken, usuario: userData } = response.data;
       
-      console.log('✅ Login exitoso, datos recibidos:', { 
+      console.log('[Auth] Login exitoso, datos recibidos:', { 
         token: newToken?.substring(0, 20) + '...', 
         usuario: userData 
       });
@@ -99,11 +99,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setToken(newToken);
       setUser(userData);
       
-      console.log('✅ Estado actualizado correctamente');
+      console.log('[Auth] Estado actualizado correctamente');
       
       return true;
     } catch (error: any) {
-      console.error('❌ Error en login:', error.response?.data || error.message);
+      console.error('[Auth] Error en login:', error.response?.data || error.message);
       return false;
     }
   };

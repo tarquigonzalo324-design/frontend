@@ -67,7 +67,7 @@ const BackupRestorePanel: React.FC = () => {
       link.remove();
       window.URL.revokeObjectURL(url);
 
-      toast.success('✅ Backup descargado correctamente');
+      toast.success('Backup descargado correctamente');
     } catch (err: any) {
       toast.error('Error al generar backup: ' + (err.response?.data?.error || err.message));
     } finally {
@@ -128,9 +128,9 @@ const BackupRestorePanel: React.FC = () => {
       });
 
       if (response.data.success) {
-        toast.success(`✅ Restauración completada: ${response.data.comandos_ejecutados} comandos ejecutados`);
+        toast.success(`Restauración completada: ${response.data.comandos_ejecutados} comandos ejecutados`);
         if (response.data.errores > 0) {
-          toast.warning(`⚠️ ${response.data.errores} comandos con errores (posibles duplicados)`);
+          toast.warning(`${response.data.errores} comandos con errores (posibles duplicados)`);
         }
       }
 
@@ -263,7 +263,7 @@ const BackupRestorePanel: React.FC = () => {
             {/* Advertencia */}
             <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
               <p className="text-sm text-red-300">
-                ⚠️ <strong>Advertencia:</strong> Esta acción puede sobrescribir datos existentes. 
+                <strong>Advertencia:</strong> Esta acción puede sobrescribir datos existentes. 
                 Asegúrate de tener un backup reciente antes de continuar.
               </p>
             </div>

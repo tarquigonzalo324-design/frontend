@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   
   const hasValidSession = !!(user || (storedToken && storedUser));
 
-  console.log('🔒 ProtectedRoute - Estado:', { 
+  console.log('[ProtectedRoute] Estado:', { 
     isLoading, 
     hasUser: !!user,
     hasStoredToken: !!storedToken,
@@ -34,11 +34,11 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   }
 
   if (!hasValidSession) {
-    console.log('🔒 ProtectedRoute - Redirigiendo a login (no hay sesión válida)');
+    console.log('[ProtectedRoute] Redirigiendo a login (no hay sesión válida)');
     return <Navigate to="/login" replace />;
   }
 
-  console.log('🔒 ProtectedRoute - Acceso permitido');
+  console.log('[ProtectedRoute] Acceso permitido');
   return <>{children}</>;
 };
 

@@ -39,7 +39,7 @@ const ProtectedRouteByRole = ({
     userRole === role.toLowerCase()
   );
 
-  console.log('🔐 ProtectedRouteByRole:', { userRole, allowedRoles, isAllowed });
+  console.log('[ProtectedRoute] Check:', { userRole, allowedRoles, isAllowed });
 
   if (!isAllowed) {
     if (userRole.includes('operador')) {

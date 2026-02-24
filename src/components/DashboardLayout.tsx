@@ -34,11 +34,11 @@ const DashboardLayout: React.FC = () => {
   useEffect(() => {
     const handleNavigate = (event: CustomEvent) => {
       const { to } = event.detail;
-      console.log('🎯 Evento de navegación recibido:', to);
+      console.log('[Nav] Evento de navegación recibido:', to);
       if (to === 'enviar') {
         setActiveSection('enviar');
         setSelectedHoja(null); // Limpiar hoja seleccionada
-        console.log('✅ Navegado a sección enviar');
+        console.log('[Nav] Navegado a sección enviar');
       }
     };
 

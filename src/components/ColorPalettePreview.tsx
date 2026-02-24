@@ -136,7 +136,7 @@ const ColorPalettePreview: React.FC = () => {
           >
             <h2 className="text-3xl font-bold mb-2">{current.name}</h2>
             <p className="text-lg opacity-90">{current.description}</p>
-            <p className="text-sm opacity-80 mt-3">💡 {current.ideal}</p>
+            <p className="text-sm opacity-80 mt-3">Tip: {current.ideal}</p>
           </div>
 
           {/* Color Grid */}

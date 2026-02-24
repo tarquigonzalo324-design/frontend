@@ -384,7 +384,7 @@ const EnviarAUnidad: React.FC = () => {
                     </div>
                     {destinosSeleccionados.length > 1 && (
                       <p className="text-xs text-amber-400 mt-2">
-                        ⚡ Se crearán {destinosSeleccionados.length} secciones automáticamente en orden
+                        Se crearán {destinosSeleccionados.length} secciones automáticamente en orden
                       </p>
                     )}
                   </div>

@@ -266,11 +266,11 @@ const HojaRutaDetalleView: React.FC<HojaRutaDetalleViewProps> = ({ hoja, onBack 
         
         const filename = `hoja-ruta-${hojaCompleta.numero_hr || hojaCompleta.id}.pdf`;
         pdf.save(filename);
-        toast.success('✅ PDF descargado correctamente');
+        toast.success('PDF descargado correctamente');
       };
     } catch (err) {
       console.error('Error al generar PDF:', err);
-      toast.error('❌ Error al generar PDF');
+      toast.error('Error al generar PDF');
     }
   };
 

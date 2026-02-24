@@ -24,7 +24,7 @@ const Login = () => {
       e.stopPropagation();
     }
     
-    console.log('🚀 handleSubmit iniciado');
+    console.log('[Login] handleSubmit iniciado');
 
     if (!username || !password) {
       toast.error('Por favor ingrese usuario y contraseña');
@@ -32,11 +32,11 @@ const Login = () => {
     }
 
     setIsLoading(true);
-    console.log('🔐 Intentando login con:', username);
+    console.log('[Login] Intentando login con:', username);
 
     try {
       const success = await login(username, password);
-      console.log('📦 Resultado login:', success);
+      console.log('[Login] Resultado:', success);
 
       if (success) {
         toast.success('¡Bienvenido al Sistema SEDEGES!');
@@ -45,22 +45,22 @@ const Login = () => {
         await new Promise(resolve => setTimeout(resolve, 150));
         
         const storedUser = sessionStorage.getItem('sedeges_user');
-        console.log('📋 Usuario almacenado:', storedUser);
+        console.log('[Login] Usuario almacenado:', storedUser);
         
         if (storedUser) {
           const userData = JSON.parse(storedUser);
           const userRol = (userData.rol || '').toLowerCase();
-          console.log('🔄 Redirigiendo usuario con rol:', userRol);
+          console.log('[Login] Redirigiendo usuario con rol:', userRol);
           
           if (userRol.includes('operador')) {
-            console.log('➡️ Navegando a /dashboard-unidad');
+            console.log('[Login] Navegando a /dashboard-unidad');
             window.location.href = '/dashboard-unidad';
           } else {
-            console.log('➡️ Navegando a /dashboard');
+            console.log('[Login] Navegando a /dashboard');
             window.location.href = '/dashboard';
           }
         } else {
-          console.log('⚠️ No hay usuario en storage, redirigiendo a dashboard');
+          console.log('[Login] No hay usuario en storage, redirigiendo a dashboard');
           window.location.href = '/dashboard';
         }
       } else {
@@ -68,7 +68,7 @@ const Login = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      console.error('❌ Error en login:', error);
+      console.error('[Login] Error:', error);
       toast.error('Error de conexión. Intente nuevamente.');
       setIsLoading(false);
     }

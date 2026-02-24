@@ -27,7 +27,7 @@ const LoginUnidad: React.FC = () => {
 
       const { token, usuario } = response.data;
       
-      console.log('✅ Login exitoso:', usuario);
+      console.log('[LoginUnidad] Login exitoso:', usuario);
 
       // Verificar que sea operador de unidad
       const rol = (usuario.rol || '').toLowerCase();

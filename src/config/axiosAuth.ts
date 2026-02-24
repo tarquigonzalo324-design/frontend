@@ -28,7 +28,7 @@ axiosAuth.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Token inválido o expirado
-      console.error('🔐 Token inválido o expirado');
+      console.error('[Auth] Token inválido o expirado');
       sessionStorage.removeItem('sedeges_token');
       sessionStorage.removeItem('sedeges_user');
       // Redirigir al login

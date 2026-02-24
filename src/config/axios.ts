@@ -29,7 +29,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
-    logger.error('❌ REQUEST ERROR', error);
+    logger.error('[Request] ERROR', error);
     return Promise.reject(error);
   }
 );
@@ -37,7 +37,7 @@ axiosInstance.interceptors.request.use(
 // Interceptor de response
 axiosInstance.interceptors.response.use(
   (response) => {
-    logger.debug('🟢 RESPONSE', {
+    logger.debug('[Response] OK', {
       status: response.status,
       url: response.config.url,
       dataLength: response.data ? Object.keys(response.data).length : 0
@@ -47,17 +47,17 @@ axiosInstance.interceptors.response.use(
   (error: AxiosError) => {
     // Manejar errores específicos
     if (error.response?.status === 401) {
-      logger.warn('🔐 Unauthorized - Token expirado o inválido');
+      logger.warn('[Auth] Unauthorized - Token expirado o inválido');
       // Aquí iría la lógica para redirigir a login
       // dispatch(logout()) o similar
     } else if (error.response?.status === 403) {
-      logger.warn('🔒 Forbidden - Acceso denegado');
+      logger.warn('[Auth] Forbidden - Acceso denegado');
     } else if (error.response?.status === 404) {
-      logger.warn('⚠️ Not Found', { url: error.config?.url });
+      logger.warn('[HTTP] Not Found', { url: error.config?.url });
     } else if (error.response?.status === 500) {
-      logger.error('❌ Server Error', { message: error.response.data });
+      logger.error('[Server] Error', { message: error.response.data });
     } else if (!error.response) {
-      logger.error('❌ Network Error', { message: error.message });
+      logger.error('[Network] Error', { message: error.message });
     }
 
     return Promise.reject(error);

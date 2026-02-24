@@ -137,9 +137,9 @@ const NuevaHojaRuta: React.FC = () => {
   useEffect(() => {
     const cargarDestinos = async () => {
       try {
-        console.log('🔄 Cargando destinos disponibles...');
+        console.log('[Destinos] Cargando destinos disponibles...');
         const response = await axiosAuth.get(API_ENDPOINTS.DESTINOS);
-        console.log('📥 Respuesta de destinos:', response.data);
+        console.log('[Destinos] Respuesta:', response.data);
         
         let destinosAplanados: any[] = [];
         
@@ -178,7 +178,7 @@ const NuevaHojaRuta: React.FC = () => {
         }
 
         if (destinosAplanados.length === 0) {
-          console.warn('⚠️ Sin destinos cargados, usando destinos por defecto');
+          console.warn('[Destinos] Sin destinos cargados, usando destinos por defecto');
           destinosAplanados = [
             { id: 1, nombre: 'Centro de Acogida', tipo: 'centro_acogida' },
             { id: 2, nombre: 'Dirección Administrativa', tipo: 'direccion' }
@@ -186,10 +186,10 @@ const NuevaHojaRuta: React.FC = () => {
         }
 
         setDestinosDisponibles(destinosAplanados);
-        console.log('✅ Destinos cargados:', destinosAplanados.length, 'destinos');
+        console.log('[Destinos] Cargados:', destinosAplanados.length, 'destinos');
       } catch (error: any) {
-        console.error('❌ Error al cargar destinos:', error?.message || error);
-        console.warn('⚠️ Usando destinos por defecto');
+        console.error('[Destinos] Error al cargar:', error?.message || error);
+        console.warn('[Destinos] Usando destinos por defecto');
         // Usar destinos por defecto si falla la carga
         const destinosPorDefecto = [
           { id: 1, nombre: 'Centro de Acogida', tipo: 'centro_acogida' },
@@ -206,7 +206,7 @@ const NuevaHojaRuta: React.FC = () => {
         const response = await axiosAuth.get('/api/unidades');
         if (response.data.success && response.data.unidades) {
           setUnidadesDisponibles(response.data.unidades.filter((u: any) => u.activo));
-          console.log('✅ Unidades cargadas:', response.data.unidades.length);
+          console.log('[Unidades] Cargadas:', response.data.unidades.length);
         }
       } catch (error) {
         console.error('Error al cargar unidades:', error);

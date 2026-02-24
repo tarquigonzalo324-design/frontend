@@ -71,8 +71,8 @@ const GestionEnvios: React.FC = () => {
       return;
     }
 
-    console.log('🔑 Token disponible:', token ? 'Sí' : 'No');
-    console.log('📤 Actualizando envío:', envioId, 'a estado:', nuevoEstado);
+    console.log('[Envios] Token disponible:', token ? 'Sí' : 'No');
+    console.log('[Envios] Actualizando envío:', envioId, 'a estado:', nuevoEstado);
 
     setUpdating(envioId);
     try {
@@ -83,8 +83,8 @@ const GestionEnvios: React.FC = () => {
         payload.fecha_entrega = new Date().toISOString();
       }
 
-      console.log('📦 Payload a enviar:', payload);
-      console.log('🌐 URL:', API_ENDPOINTS.ENVIOS_ESTADO(envioId));
+      console.log('[Envios] Payload a enviar:', payload);
+      console.log('[Envios] URL:', API_ENDPOINTS.ENVIOS_ESTADO(envioId));
 
       const response = await axios.put(
         API_ENDPOINTS.ENVIOS_ESTADO(envioId), 
@@ -97,7 +97,7 @@ const GestionEnvios: React.FC = () => {
         }
       );
 
-      console.log('✅ Respuesta del servidor:', response.data);
+      console.log('[Envios] Respuesta del servidor:', response.data);
 
       if (response.data.success) {
         setMessage(`Envío marcado como ${nuevoEstado}`);
@@ -110,9 +110,9 @@ const GestionEnvios: React.FC = () => {
         ));
       }
     } catch (err: any) {
-      console.error('❌ Error completo:', err);
-      console.error('❌ Respuesta del servidor:', err.response?.data);
-      console.error('❌ Status:', err.response?.status);
+      console.error('[Envios] Error completo:', err);
+      console.error('[Envios] Respuesta del servidor:', err.response?.data);
+      console.error('[Envios] Status:', err.response?.status);
       setMessage(err.response?.data?.error || 'Error al actualizar estado del envío');
     } finally {
       setUpdating(null);

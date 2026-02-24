@@ -29,14 +29,14 @@ const EnviarPage: React.FC = () => {
       if (!token) return;
       
       try {
-        console.log('📋 Cargando hojas de ruta...');
+        console.log('[Hojas] Cargando hojas de ruta...');
         const res = await axios.get(API_ENDPOINTS.HOJAS_RUTA, { 
           headers: { Authorization: `Bearer ${token}` } 
         });
         setHojas(res.data || []);
-        console.log('✅ Hojas cargadas:', res.data?.length || 0);
+        console.log('[Hojas] Cargadas:', res.data?.length || 0);
       } catch (err) {
-        console.error('❌ Error al cargar hojas:', err);
+        console.error('[Hojas] Error al cargar:', err);
         setMessage('Error al cargar hojas de ruta');
         setMessageType('error');
       }
@@ -74,7 +74,7 @@ const EnviarPage: React.FC = () => {
     setMessage(null);
 
     try {
-      console.log('📤 Enviando datos...');
+      console.log('[Enviar] Enviando datos...');
       
       // Preparar metadatos de archivos
       const instrucciones = files ? Array.from(files).map(f => ({
@@ -91,7 +91,7 @@ const EnviarPage: React.FC = () => {
         instrucciones
       };
 
-      console.log('📦 Payload:', payload);
+      console.log('[Enviar] Payload:', payload);
 
       const res = await axios.post(API_ENDPOINTS.ENVIOS, payload, {
         headers: { 
@@ -101,13 +101,13 @@ const EnviarPage: React.FC = () => {
       });
 
       if (res.status === 201) {
-        console.log('✅ Envío exitoso:', res.data);
+        console.log('[Enviar] Envío exitoso:', res.data);
         setMessage(res.data?.mensaje || 'Envío registrado correctamente');
         setMessageType('success');
         resetForm();
       }
     } catch (err: any) {
-      console.error('❌ Error al enviar:', err);
+      console.error('[Enviar] Error:', err);
       const status = err?.response?.status;
       const errorData = err?.response?.data;
       
