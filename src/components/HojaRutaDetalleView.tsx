@@ -84,11 +84,15 @@ const HojaRutaDetalleView: React.FC<HojaRutaDetalleViewProps> = ({ hoja, onBack 
     instrucciones: ''
   });
 
+  // Estado para respuestas de unidades
+  const [respuestasUnidades, setRespuestasUnidades] = useState<any[]>([]);
+
   const printRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchHojaCompleta();
     fetchUnidades();
+    fetchRespuestasUnidades();
   }, [hoja?.id, token]);
 
   // Inicializar fecha de salida al cargar
@@ -197,6 +201,19 @@ const HojaRutaDetalleView: React.FC<HojaRutaDetalleViewProps> = ({ hoja, onBack 
       toast.error(mensaje);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Cargar respuestas de unidades para mostrar en el preview
+  const fetchRespuestasUnidades = async () => {
+    if (!hoja?.id) return;
+    try {
+      const res = await axiosAuth.get(API_ENDPOINTS.PROGRESO_RESPUESTAS(Number(hoja.id)));
+      if (res.data?.success) {
+        setRespuestasUnidades(res.data.respuestas || []);
+      }
+    } catch (err) {
+      setRespuestasUnidades([]);
     }
   };
 
@@ -596,7 +613,7 @@ const HojaRutaDetalleView: React.FC<HojaRutaDetalleViewProps> = ({ hoja, onBack 
               ref={printRef}
               style={{ background: '#fff', color: '#222', width: '100%' }}
             >
-              {hojaCompleta && <HojaRutaPreview data={hojaCompleta} />}
+              {hojaCompleta && <HojaRutaPreview data={hojaCompleta} respuestasUnidades={respuestasUnidades} />}
             </div>
           </div>
         </div>
